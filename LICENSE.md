@@ -1,6 +1,6 @@
-Copyright (c) 2026 mFk
+Copyright (c) 2026 mFkGames
 
 All rights reserved.
 
-This project and its source code cannot be copied, modified,
-distributed, or used without permission from the developer.
+This software and its assets may not be copied, modified, distributed,
+reverse engineered, or used without explicit permission from the author.
