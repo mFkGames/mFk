@@ -4,8 +4,8 @@ Privacy policy and legal pages
 
 ⚠ This repository is published for transparency purposes only.
 
-All game mechanics, source code, visual assets, and audio are proprietary
-intellectual property of mFkGames.
+Casual mobile game project.
 
-Unauthorized copying, redistribution, modification, reverse engineering,
-or reuse of any part of this project is strictly prohibited.
+This repository contains legal and public information related to the project.
+
+Internal project identifier: mFk-Bubble-2026
