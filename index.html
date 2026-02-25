@@ -7,15 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --cream: #faf7f2;
-            --dark: #1a1a2e;
-            --accent: #e63946;
-            --accent2: #4ecdc4;
-            --accent3: #ffe66d;
-            --card: #ffffff;
-            --border: #e8e0d5;
-            --text: #2d2d2d;
-            --muted: #888;
+            --cream: #f0ece4;
+            --dark: #0f0f1e;
+            --accent: #c8222f;
+            --accent2: #2db5ac;
+            --accent3: #f5d832;
+            --border: #cec4b5;
+            --text: #1a1a1a;
+            --muted: #444;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,6 +24,7 @@
             color: var(--text);
             font-family: 'DM Sans', sans-serif;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         body::before {
@@ -36,6 +36,71 @@
             z-index: 0;
         }
 
+        /* ── LANGUAGE SELECTOR ── */
+        .lang-bar {
+            position: fixed;
+            top: 0; right: 0;
+            z-index: 1000;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-toggle {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 8px;
+            background: transparent;
+            color: rgba(26,26,26,0.35);
+            border: 1.5px solid rgba(26,26,26,0.18);
+            padding: 7px 11px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.15s;
+        }
+
+        .lang-toggle .globe { font-size: 13px; line-height: 1; }
+
+        .lang-toggle:hover {
+            color: var(--dark);
+            border-color: var(--dark);
+            transform: translate(-2px, -2px);
+            box-shadow: 3px 3px 0 var(--dark);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% - 6px);
+            right: 20px;
+            background: var(--dark);
+            border: 2px solid var(--accent3);
+            min-width: 160px;
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+        }
+
+        .lang-dropdown.open { display: flex; }
+
+        .lang-option {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 10px 16px;
+            color: #ccc;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            transition: background 0.1s, color 0.1s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-option:last-child { border-bottom: none; }
+        .lang-option:hover, .lang-option.active { background: rgba(245,216,50,0.12); color: var(--accent3); }
+
+        /* ── HERO ── */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -50,10 +115,10 @@
         .pixel-badge {
             display: inline-block;
             font-family: 'Press Start 2P', monospace;
-            font-size: 9px;
+            font-size: 10px;
             color: var(--accent);
             border: 2px solid var(--accent);
-            padding: 8px 14px;
+            padding: 9px 16px;
             margin-bottom: 32px;
             animation: blink 1.4s step-end infinite;
             width: fit-content;
@@ -65,27 +130,27 @@
 
         .hero-name {
             font-family: 'Press Start 2P', monospace;
-            font-size: clamp(22px, 4vw, 48px);
+            font-size: clamp(26px, 4.5vw, 52px);
             line-height: 1.5;
             color: var(--dark);
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             animation: fadeUp 0.8s ease both;
         }
 
         .hero-name span { color: var(--accent); }
 
         .hero-sub {
-            font-size: 18px;
-            font-weight: 300;
+            font-size: 20px;
+            font-weight: 400;
             color: var(--muted);
             margin-bottom: 40px;
             animation: fadeUp 0.8s 0.1s ease both;
         }
 
         .hero-desc {
-            font-size: 16px;
-            line-height: 1.8;
-            max-width: 500px;
+            font-size: 17px;
+            line-height: 1.85;
+            max-width: 520px;
             color: var(--text);
             animation: fadeUp 0.8s 0.2s ease both;
             margin-bottom: 48px;
@@ -100,14 +165,15 @@
 
         .btn {
             font-family: 'Press Start 2P', monospace;
-            font-size: 8px;
-            padding: 14px 20px;
+            font-size: 9px;
+            padding: 15px 22px;
             text-decoration: none;
             cursor: pointer;
             transition: transform 0.15s, box-shadow 0.15s;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            line-height: 1;
         }
 
         .btn-primary {
@@ -127,238 +193,40 @@
             box-shadow: 5px 5px 0 var(--dark);
         }
 
+        .btn-icon { font-size: 17px; line-height: 1; display: inline-flex; align-items: center; position: relative; top: 1px; }
         .btn-primary:hover { box-shadow: 5px 5px 0 var(--accent); }
 
+        /* ── PIXEL DECO ── */
         .pixel-deco {
             position: absolute;
-            right: 60px;
+            right: 50px;
             top: 50%;
             transform: translateY(-50%);
             display: grid;
             grid-template-columns: repeat(8, 1fr);
-            gap: 10px;
-            opacity: 0.15;
+            gap: 14px;
+            opacity: 0.55;
         }
 
         .pixel-deco span {
-            width: 18px;
-            height: 18px;
-            background: var(--dark);
+            width: 26px;
+            height: 26px;
             display: block;
             animation: pixelFade 3s ease-in-out infinite;
         }
 
-        .pixel-deco span:nth-child(odd) { animation-delay: 0.5s; background: var(--accent); }
-        .pixel-deco span:nth-child(3n) { animation-delay: 1s; background: var(--accent2); }
-        .pixel-deco span:nth-child(5n) { background: var(--accent3); }
+        .pixel-deco span:nth-child(8n+1) { background: #a01820; animation-delay: 0.0s; }
+        .pixel-deco span:nth-child(8n+2) { background: #0a0a16; animation-delay: 0.2s; }
+        .pixel-deco span:nth-child(8n+3) { background: #1e8a84; animation-delay: 0.5s; }
+        .pixel-deco span:nth-child(8n+4) { background: #c9ae14; animation-delay: 0.8s; }
+        .pixel-deco span:nth-child(8n+5) { background: #a01820; animation-delay: 1.0s; }
+        .pixel-deco span:nth-child(8n+6) { background: #1e8a84; animation-delay: 1.3s; }
+        .pixel-deco span:nth-child(8n+7) { background: #0a0a16; animation-delay: 1.6s; }
+        .pixel-deco span:nth-child(8n+8) { background: #c9ae14; animation-delay: 1.9s; }
 
         @keyframes pixelFade {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.3; transform: scale(0.7); }
-        }
-
-        .stats {
-            background: var(--dark);
-            color: var(--cream);
-            padding: 24px 40px;
-            display: flex;
-            gap: 60px;
-            overflow-x: auto;
-        }
-
-        .stat { display: flex; flex-direction: column; gap: 4px; white-space: nowrap; }
-
-        .stat-num {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 20px;
-            color: var(--accent3);
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 80px 40px;
-        }
-
-        .section-label {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 9px;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-family: 'Press Start 2P', monospace;
-            font-size: clamp(16px, 2.5vw, 28px);
-            color: var(--dark);
-            margin-bottom: 48px;
-            line-height: 1.6;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .project-card {
-            background: var(--card);
-            border: 2px solid var(--border);
-            padding: 32px;
-            position: relative;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .project-card:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 6px 6px 0 var(--dark);
-        }
-
-        .project-card.featured { border-color: var(--accent); }
-
-        .project-tag {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 7px;
-            padding: 5px 10px;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        .tag-featured { background: var(--accent); color: white; }
-        .tag-wip { background: var(--accent3); color: var(--dark); }
-
-        .project-name {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 13px;
-            color: var(--dark);
-            margin-bottom: 12px;
-            line-height: 1.6;
-        }
-
-        .project-desc {
-            font-size: 14px;
-            color: var(--muted);
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-
-        .project-tech { display: flex; gap: 8px; flex-wrap: wrap; }
-
-        .tech-pill {
-            font-size: 11px;
-            padding: 4px 10px;
-            background: var(--cream);
-            border: 1px solid var(--border);
-            color: var(--text);
-            border-radius: 2px;
-        }
-
-        .project-link {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 7px;
-            color: var(--accent);
-            text-decoration: none;
-            border-bottom: 1px solid var(--accent);
-            padding-bottom: 2px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 16px;
-        }
-
-        .skill-item {
-            background: white;
-            border: 2px solid var(--border);
-            padding: 20px 24px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            transition: transform 0.15s, box-shadow 0.15s;
-        }
-
-        .skill-item:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 4px 4px 0 var(--dark);
-        }
-
-        .skill-icon { font-size: 22px; }
-        .skill-name { font-size: 14px; font-weight: 500; color: var(--dark); }
-
-        .contact-box {
-            background: var(--dark);
-            padding: 60px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-box::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 20px,
-                rgba(255,255,255,0.02) 20px,
-                rgba(255,255,255,0.02) 40px
-            );
-        }
-
-        .contact-title {
-            font-family: 'Press Start 2P', monospace;
-            font-size: clamp(14px, 2vw, 24px);
-            color: var(--cream);
-            margin-bottom: 16px;
-            position: relative;
-        }
-
-        .contact-sub {
-            color: #888;
-            font-size: 15px;
-            margin-bottom: 36px;
-            position: relative;
-        }
-
-        .contact-email {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 11px;
-            color: var(--accent3);
-            text-decoration: none;
-            border-bottom: 2px solid var(--accent3);
-            padding-bottom: 4px;
-            position: relative;
-            transition: color 0.2s;
-        }
-
-        footer {
-            background: #111;
-            color: #555;
-            text-align: center;
-            padding: 24px;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 7px;
-            line-height: 2;
-        }
-
-        footer span { color: var(--accent); }
-
-        .divider {
-            border: none;
-            border-top: 2px solid var(--border);
-            margin: 0 40px;
+            50% { opacity: 0.2; transform: scale(0.6); }
         }
 
         @keyframes fadeUp {
@@ -366,29 +234,56 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 7px;
+            color: rgba(26,26,26,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        footer span { color: rgba(26,26,26,0.5); }
+
         @media (max-width: 600px) {
             .pixel-deco { display: none; }
-            .stats { gap: 30px; }
-            .contact-box { padding: 40px 24px; }
-            .hero { padding: 40px 24px; }
-            .section { padding: 60px 24px; }
+            .hero { padding: 70px 24px 40px; }
+            .lang-bar { padding: 12px 14px; }
         }
     </style>
 </head>
 <body>
 
+<!-- ── LANGUAGE SELECTOR ── -->
+<div class="lang-bar">
+    <button class="lang-toggle" onclick="toggleLang()" id="langBtn"><span class="globe">🌐</span><span id="langLabel"> TR</span></button>
+    <div class="lang-dropdown" id="langDropdown">
+        <div class="lang-option active" onclick="setLang('tr')">Türkçe</div>
+        <div class="lang-option" onclick="setLang('en')">English</div>
+        <div class="lang-option" onclick="setLang('de')">Deutsch</div>
+        <div class="lang-option" onclick="setLang('fr')">Français</div>
+        <div class="lang-option" onclick="setLang('es')">Español</div>
+        <div class="lang-option" onclick="setLang('it')">Italiano</div>
+        <div class="lang-option" onclick="setLang('pt')">Português</div>
+        <div class="lang-option" onclick="setLang('ru')">Русский</div>
+        <div class="lang-option" onclick="setLang('ja')">日本語</div>
+        <div class="lang-option" onclick="setLang('ar')">العربية</div>
+    </div>
+</div>
+
+<!-- ── HERO ── -->
 <section class="hero">
-    <div class="pixel-badge">▶ PLAYER ONE</div>
+    <div class="pixel-badge" data-i18n="badge">▶ OYUNCU BİR</div>
     <h1 class="hero-name">mFk <span>Games</span></h1>
-    <p class="hero-sub">Game Developer</p>
-    <p class="hero-desc">
-        Mobil oyunlar geliştiren bağımsız bir geliştirici. 
-        Eğlenceli, sade ve her yaşa hitap eden deneyimler 
+    <p class="hero-sub" data-i18n="heroSub">Oyun Geliştirici</p>
+    <p class="hero-desc" data-i18n="heroDesc">
+        Mobil oyunlar geliştiren bağımsız bir geliştirici.
+        Eğlenceli, sade ve her yaşa hitap eden deneyimler
         yaratmayı seviyorum.
     </p>
     <div class="hero-links">
-        <a href="https://play.google.com/store/apps/developer?id=mFk+Games" class="btn btn-primary" target="_blank">▶ Google Play</a>
-        <a href="mailto:mefeka47@hotmail.com" class="btn btn-outline">✉ İletişim</a>
+        <a href="https://play.google.com/store/apps/developer?id=mFk+Games" class="btn btn-primary" target="_blank" data-i18n="btnPlay"><span class="btn-icon">▶</span> Google Play</a>
+        <a href="mailto:mefeka47@hotmail.com" class="btn btn-outline" data-i18n="btnContact"><span class="btn-icon">✉</span> İletişim</a>
     </div>
 
     <div class="pixel-deco">
@@ -403,78 +298,53 @@
     </div>
 </section>
 
-<div class="stats">
-    <div class="stat">
-        <span class="stat-num">1+</span>
-        <span class="stat-label">Yayınlanan Oyun</span>
-    </div>
-    <div class="stat">
-        <span class="stat-num">Android</span>
-        <span class="stat-label">Platform</span>
-    </div>
-    <div class="stat">
-        <span class="stat-num">2026</span>
-        <span class="stat-label">Başlangıç Yılı</span>
-    </div>
-    <div class="stat">
-        <span class="stat-num">∞</span>
-        <span class="stat-label">Yeni Proje</span>
-    </div>
-</div>
-
-<hr class="divider" style="margin-top:0;">
-
-<section class="section">
-    <p class="section-label">// projeler</p>
-    <h2 class="section-title">Oyunlarım</h2>
-    <div class="projects-grid">
-        <div class="project-card featured">
-            <span class="project-tag tag-featured">YENİ</span>
-            <a href="https://play.google.com/store/apps/details?id=com.mfk.kucukbuyuk" class="project-link" target="_blank">▶ Play Store</a>
-            <h3 class="project-name">Küçük Büyük</h3>
-            <p class="project-desc">Her yaşa uygun eğlenceli bir mobil oyun. Android platformunda yayında!</p>
-            <div class="project-tech">
-                <span class="tech-pill">Android</span>
-                <span class="tech-pill">Capacitor</span>
-                <span class="tech-pill">Java</span>
-            </div>
-        </div>
-        <div class="project-card">
-            <span class="project-tag tag-wip">YAKINDA</span>
-            <h3 class="project-name">???</h3>
-            <p class="project-desc">Yeni bir proje geliyor. Takipte kal!</p>
-            <div class="project-tech">
-                <span class="tech-pill">TBA</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<hr class="divider">
-
-<section class="section">
-    <p class="section-label">// yetenekler</p>
-    <h2 class="section-title">Kullandığım<br>Teknolojiler</h2>
-    <div class="skills-grid">
-        <div class="skill-item"><span class="skill-icon">🤖</span><span class="skill-name">Android</span></div>
-        <div class="skill-item"><span class="skill-icon">⚡</span><span class="skill-name">Capacitor</span></div>
-        <div class="skill-item"><span class="skill-icon">☕</span><span class="skill-name">Java</span></div>
-        <div class="skill-item"><span class="skill-icon">🌐</span><span class="skill-name">HTML / CSS</span></div>
-        <div class="skill-item"><span class="skill-icon">📦</span><span class="skill-name">Gradle</span></div>
-        <div class="skill-item"><span class="skill-icon">🎮</span><span class="skill-name">Game Design</span></div>
-    </div>
-</section>
-
-<div class="contact-box">
-    <h2 class="contact-title">Bir fikrin mi var?</h2>
-    <p class="contact-sub">Proje, iş birliği veya soru için ulaşabilirsin.</p>
-    <a href="mailto:mefeka47@hotmail.com" class="contact-email">mefeka47@hotmail.com</a>
-</div>
-
 <footer>
-    <p>© 2026 <span>mFk Games</span></p>
-    <p style="margin-top:8px;"><a href="privacy-policy.html" style="color:#555; text-decoration:none;">Gizlilik Politikası</a></p>
+    <p>© 2026 <span>mFk Games</span> — <span data-i18n="copyright">Tüm hakları saklıdır.</span></p>
 </footer>
+
+<script>
+const i18n = {
+    tr: { badge:"▶ OYUNCU BİR", heroSub:"Oyun Geliştirici", heroDesc:"Mobil oyunlar geliştiren bağımsız bir geliştirici. Eğlenceli, sade ve her yaşa hitap eden deneyimler yaratmayı seviyorum.", btnPlay:"▶ Google Play", btnContact:"✉ İletişim", copyright:"Tüm hakları saklıdır.", langLabel:"TR" },
+    en: { badge:"▶ PLAYER ONE", heroSub:"Game Developer", heroDesc:"An indie developer making mobile games. I love creating fun, simple experiences for all ages.", btnPlay:"▶ Google Play", btnContact:"✉ Contact", copyright:"All rights reserved.", langLabel:"EN" },
+    de: { badge:"▶ SPIELER EINS", heroSub:"Spielentwickler", heroDesc:"Unabhängiger Entwickler von mobilen Spielen. Ich liebe es, unterhaltsame Erlebnisse für alle zu schaffen.", btnPlay:"▶ Google Play", btnContact:"✉ Kontakt", copyright:"Alle Rechte vorbehalten.", langLabel:"DE" },
+    fr: { badge:"▶ JOUEUR UN", heroSub:"Développeur de Jeux", heroDesc:"Développeur indépendant de jeux mobiles. J'adore créer des expériences amusantes pour tous les âges.", btnPlay:"▶ Google Play", btnContact:"✉ Contact", copyright:"Tous droits réservés.", langLabel:"FR" },
+    es: { badge:"▶ JUGADOR UNO", heroSub:"Desarrollador de Juegos", heroDesc:"Desarrollador independiente de juegos móviles. Me encanta crear experiencias divertidas para todas las edades.", btnPlay:"▶ Google Play", btnContact:"✉ Contacto", copyright:"Todos los derechos reservados.", langLabel:"ES" },
+    it: { badge:"▶ GIOCATORE UNO", heroSub:"Sviluppatore di Giochi", heroDesc:"Sviluppatore indipendente di giochi mobile. Amo creare esperienze divertenti per tutte le età.", btnPlay:"▶ Google Play", btnContact:"✉ Contatti", copyright:"Tutti i diritti riservati.", langLabel:"IT" },
+    pt: { badge:"▶ JOGADOR UM", heroSub:"Desenvolvedor de Jogos", heroDesc:"Desenvolvedor independente de jogos mobile. Adoro criar experiências divertidas para todas as idades.", btnPlay:"▶ Google Play", btnContact:"✉ Contato", copyright:"Todos os direitos reservados.", langLabel:"PT" },
+    ru: { badge:"▶ ИГРОК ОДИН", heroSub:"Разработчик игр", heroDesc:"Независимый разработчик мобильных игр. Люблю создавать весёлые и простые игры для всех возрастов.", btnPlay:"▶ Google Play", btnContact:"✉ Контакт", copyright:"Все права защищены.", langLabel:"RU" },
+    ja: { badge:"▶ プレイヤーワン", heroSub:"ゲーム開発者", heroDesc:"モバイルゲームを開発するインディー開発者。シンプルで面白い体験を作るのが好きです。", btnPlay:"▶ Google Play", btnContact:"✉ お問い合わせ", copyright:"All rights reserved.", langLabel:"JP" },
+    ar: { badge:"▶ اللاعب الأول", heroSub:"مطور ألعاب", heroDesc:"مطور مستقل للألعاب المحمولة. أحب إنشاء تجارب ممتعة وبسيطة لجميع الأعمار.", btnPlay:"▶ Google Play", btnContact:"✉ تواصل", copyright:"جميع الحقوق محفوظة.", langLabel:"AR" }
+};
+
+function toggleLang() {
+    const dd = document.getElementById('langDropdown');
+    const label = document.getElementById('langLabel');
+    const isOpen = dd.classList.toggle('open');
+    label.style.display = isOpen ? 'none' : '';
+}
+
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.lang-bar')) {
+        document.getElementById('langDropdown').classList.remove('open');
+        document.getElementById('langLabel').style.display = '';
+    }
+});
+
+function setLang(lang) {
+    const t = i18n[lang];
+    document.getElementById('langDropdown').classList.remove('open');
+    document.getElementById('langLabel').style.display = '';
+    document.getElementById('langLabel').textContent = ' ' + t.langLabel;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+    });
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.classList.toggle('active', opt.getAttribute('onclick').includes(`'${lang}'`));
+    });
+}
+</script>
 
 </body>
 </html>
