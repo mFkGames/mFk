@@ -27,6 +27,10 @@
             --muted: #444;
         }
 
+        html {
+            scrollbar-gutter: stable;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -210,7 +214,7 @@
 
         .social-sub {
             position: absolute;
-            left: 100%;
+            left: calc(100% - 2px);
             top: 0;
             background: var(--dark);
             border: 2px solid var(--accent3);
@@ -219,6 +223,11 @@
             flex-direction: column;
             z-index: 1000;
             box-shadow: 6px 6px 0 rgba(0,0,0,0.35);
+        }
+
+        .social-group:nth-last-child(-n+2) .social-sub {
+            top: auto;
+            bottom: -2px;
         }
 
         .social-group:hover .social-sub {
@@ -381,6 +390,18 @@
 
         @media (max-width: 768px) {
             .pixel-deco { display: none; }
+
+            .social-sub {
+                position: static;
+                width: 100%;
+                border: none;
+                box-shadow: none;
+                border-top: 1px solid rgba(255,255,255,0.05);
+            }
+
+            .social-sub .social-option {
+                padding-left: 28px;
+            }
         }
 
         @media (max-width: 600px) {
@@ -581,6 +602,7 @@
                 <div class="social-group">
                     <span class="social-header">YouTube</span>
                     <div class="social-sub">
+                        <a class="social-option" href="https://www.youtube.com/@mFkGamesStudio" target="_blank" rel="noopener">mFk Games</a>
                         <a class="social-option" href="https://youtube.com/@fruittherapytv?si=Dwrbtfa-tMhNpDFq" target="_blank" rel="noopener">Fruit Therapy</a>
                         <a class="social-option" href="https://youtube.com/@tinyloopword?si=S8yvkhF1vHMZAzk0" target="_blank" rel="noopener">Tinyloop</a>
                     </div>
@@ -800,6 +822,7 @@ var elTwDesc     = document.getElementById('twDesc');
 // ── Toggle dropdown ───────────────────────────────────────────
 langBtn.addEventListener('click', function(e) {
     e.stopPropagation();
+    socialDropdown.classList.remove('open');
     langDropdown.classList.toggle('open');
 });
 
@@ -868,6 +891,7 @@ var socialDropdown = document.getElementById('socialDropdown');
 
 socialBtn.addEventListener('click', function(e) {
     e.stopPropagation();
+    langDropdown.classList.remove('open');
     socialDropdown.classList.toggle('open');
 });
 
