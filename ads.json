@@ -1,0 +1,217 @@
+[
+  {
+    "title": "ASTROFiCYUS: Astrology & Tarot",
+    "pkg": "com.mfk.astroficyus",
+    "category": "yetiskin"
+  },
+  {
+    "title": "Area Capture",
+    "pkg": "com.mfk.areacapture",
+    "category": "oyun"
+  },
+  {
+    "title": "BuumRom",
+    "pkg": "com.mfk.buumrom",
+    "category": "oyun"
+  },
+  {
+    "title": "CamLink",
+    "pkg": "com.mfk.camlink",
+    "category": "arac"
+  },
+  {
+    "title": "ChessBorn",
+    "pkg": "com.mfk.chessborn",
+    "category": "oyun"
+  },
+  {
+    "title": "Container",
+    "pkg": "com.mfk.container",
+    "category": "oyun"
+  },
+  {
+    "title": "Destan",
+    "pkg": "com.mfk.destan",
+    "category": "oyun"
+  },
+  {
+    "title": "Escape",
+    "pkg": "com.mfk.escape",
+    "category": "oyun"
+  },
+  {
+    "title": "ForceNeo",
+    "pkg": "com.mfk.forceneo",
+    "category": "oyun"
+  },
+  {
+    "title": "HexFaal",
+    "pkg": "com.mfk.hexfaal",
+    "category": "oyun"
+  },
+  {
+    "title": "Hexoria",
+    "pkg": "com.mfk.hexoria",
+    "category": "oyun"
+  },
+  {
+    "title": "KuraLab",
+    "pkg": "com.mfk.kuralab",
+    "category": "genel"
+  },
+  {
+    "title": "Legions Rush",
+    "pkg": "com.mfk.legionsrush",
+    "category": "oyun"
+  },
+  {
+    "title": "Limit Area",
+    "pkg": "com.mfk.limitarea",
+    "category": "oyun"
+  },
+  {
+    "title": "LiquidLab",
+    "pkg": "com.mfk.liquidlab",
+    "category": "oyun"
+  },
+  {
+    "title": "Locked",
+    "pkg": "com.mfk.locked",
+    "category": "oyun"
+  },
+  {
+    "title": "LullaBaby",
+    "pkg": "com.mfk.LullaBaby",
+    "category": "aile"
+  },
+  {
+    "title": "MazeRush",
+    "pkg": "com.mfk.mazerush",
+    "category": "oyun"
+  },
+  {
+    "title": "Metro Dash",
+    "pkg": "com.mfk.metrodash",
+    "category": "oyun"
+  },
+  {
+    "title": "Mital",
+    "pkg": "com.mfk.mital",
+    "category": "oyun"
+  },
+  {
+    "title": "MoneyFlow",
+    "pkg": "com.mfk.moneyflow",
+    "category": "finans"
+  },
+  {
+    "title": "NeYapsam",
+    "pkg": "com.mfk.neyapsam",
+    "category": "genel"
+  },
+  {
+    "title": "Neon Cave",
+    "pkg": "com.mfk.neoncave",
+    "category": "oyun"
+  },
+  {
+    "title": "Neon Dodge",
+    "pkg": "com.mfk.neondodge",
+    "category": "oyun"
+  },
+  {
+    "title": "Nova Storm",
+    "pkg": "com.mfk.novastrom",
+    "category": "oyun"
+  },
+  {
+    "title": "OBDIX",
+    "pkg": "com.mfk.obdix",
+    "category": "arac"
+  },
+  {
+    "title": "Oyun Sepeti",
+    "pkg": "com.mfk.oyunsepeti",
+    "category": "genel"
+  },
+  {
+    "title": "Raider Protocol",
+    "pkg": "com.mfk.raiderprotocol",
+    "category": "oyun"
+  },
+  {
+    "title": "RetroStride",
+    "pkg": "com.mfk.retrostride",
+    "category": "oyun"
+  },
+  {
+    "title": "Rüya Kapısı",
+    "pkg": "com.mfk.ruyakapisi",
+    "category": "yetiskin"
+  },
+  {
+    "title": "Shadow Loop",
+    "pkg": "com.mfk.shadowloop",
+    "category": "oyun"
+  },
+  {
+    "title": "Sinir",
+    "pkg": "com.mfk.sinir",
+    "category": "oyun"
+  },
+  {
+    "title": "Sky Defender",
+    "pkg": "com.mfk.SkyDefender",
+    "category": "oyun"
+  },
+  {
+    "title": "Sky Strike",
+    "pkg": "com.mfk.skystrike",
+    "category": "oyun"
+  },
+  {
+    "title": "Smart Remote",
+    "pkg": "com.mfk.SmartRemote",
+    "category": "arac"
+  },
+  {
+    "title": "SuperCar",
+    "pkg": "com.mfk.supercar",
+    "category": "oyun"
+  },
+  {
+    "title": "TimeLoock",
+    "pkg": "com.mfk.timeloock",
+    "category": "oyun"
+  },
+  {
+    "title": "Troll",
+    "pkg": "com.mfk.troll",
+    "category": "oyun"
+  },
+  {
+    "title": "TurfWars",
+    "pkg": "com.mfk.TurfWars",
+    "category": "oyun"
+  },
+  {
+    "title": "Türkiye Keşif",
+    "pkg": "com.mfk.turkiyekesif",
+    "category": "genel"
+  },
+  {
+    "title": "Void Crawler",
+    "pkg": "com.mfk.voidcrawler",
+    "category": "oyun"
+  },
+  {
+    "title": "Void Runner",
+    "pkg": "com.mfk.VoidRunner",
+    "category": "oyun"
+  },
+  {
+    "title": "mFk Farm",
+    "pkg": "com.mfk.mfkfarm",
+    "category": "oyun"
+  }
+]
